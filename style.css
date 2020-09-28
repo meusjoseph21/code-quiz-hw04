@@ -1,0 +1,12 @@
+.begin {
+
+    text-align: center;
+    display: block;
+    margin-top: 200px;
+    margin-left: 500px;
+    width: 800px;
+    height: 500px;
+    outline: 2px solid black;
+
+    
+}
