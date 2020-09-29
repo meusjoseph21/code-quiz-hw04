@@ -10,36 +10,12 @@
 var timeStart = document.getElementById("timer");
 var timeLeft = document.querySelector(".time-left");
 var clearMain = document.querySelector(".clear");
+
 var showQuestions= document.querySelector(".question-container");
+var choices= document.getElementById("choices");
+var title= document.getElementById("question-title");
 var countdown = 75;
-
-//Timer of 75 seconds 
-
-function quizBegin(){ 
-    timeStart.addEventListener("click", function(){
-        clearMain.style.display = "none"; //clears the start screen
-    
-        console.log("click"); //this works now add timer start
-        var timerCountdown = setInterval(function(){
-            countdown--;
-            timeLeft.textContent =  countdown + " seconds left";
-            if (countdown === 0){
-                clearInterval(timerCountdown);
-            }
-        }, 1000)
-
-        
-      })
-
-      startQuestions();
-
-          
- }
-
-
-
-quizBegin()
-
+var indexQuestion = 0;
 
 var questions = [
     {title: "what is up?", choices: ['one','two','three','four'], answer: 'one'},
@@ -50,21 +26,53 @@ var questions = [
 ]
 
 
-function startQuestions(){
-    showQuestions.style.display = 
-    "block";
-    //fill in div with list items
-    var list = document.createElement('ul');
-    var pull = set1.question;
+//todo add event listener to listen to all four questions us
 
-    var item = document.createElement('li');
-    item.appendChild.pull;
-
-    
+function showCurrentQuestion(){
+    var currentQuestion = questions[indexQuestion];
+    title.textContent = currentQuestion.title;
+      
 }
 
-//TODO question pops up need to fill the list items from array.
+function startQuiz(){
+    var currentQuestion = questions[indexQuestion]
+    clearMain.style.display = "none"; //clears the start screen
 
+    console.log("click"); //this works now add timer start
+    var timerCountdown = setInterval(function(){
+        countdown--;
+        timeLeft.textContent =  countdown + " seconds left";
+        if (countdown === 0){
+            clearInterval(timerCountdown);
+        }
+    }, 1000)
+
+    for (let i = 0; i < currentQuestion.choices.length; i++) {
+        var button = document.createElement("button")
+        button.setAttribute("class","answers")
+        button.textContent = currentQuestion.choices[i]
+        choices.appendChild(button) 
+     }
+    showCurrentQuestion();
+
+    
+  }
+
+  function questionAnswered(e){
+      if (e.target.matches(".answers")){
+          indexQuestion++
+          showCurrentQuestion();
+      }
+
+  }
+
+
+//Event listener
+timeStart.addEventListener("click", startQuiz);
+
+choices.addEventListener("click", questionAnswered);
+
+//Entry Point
 
 
 
