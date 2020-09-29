@@ -17,12 +17,14 @@ var questions = [
 //These variables for timer
 var timeStart = document.getElementById("timer");
 var timeLeft = document.querySelector(".time-left");
+var clearMain = document.querySelector(".clear");
 var countdown = 75;
 
 //Timer of 75 seconds 
 //TODO make click on timer pull up first question
 function quizBegin(){ 
     timeStart.addEventListener("click", function(){
+        clearMain.style.display = "none"; //clears the start screen
         console.log("click"); //this works now add timer start
         var timerCountdown = setInterval(function(){
             countdown--;
@@ -34,21 +36,15 @@ function quizBegin(){
 
         
       })
-}
+          
+ }
 
-var questionStart = document.getElementById("questions");
-
-function Question1(){
-    if (quizBegin === true){
-
-       var questionStart = document.createElement("form")
-       questionStart.setAttribute("ul");
-       que
-    
-
-    }
-}
 quizBegin();
+
+//TODO need to get a question to pop up or anything lol
+
+
+
 
 // WHEN I answer a question correctly 
 //search question is an object
