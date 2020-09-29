@@ -9,3 +9,17 @@
 
     
 }
+
+.question-container {
+    text-align: center;
+}
+
+.questions {
+    display: table;
+    margin: 0 auto;
+    display: none;
+}
+
+div {
+    outline: 1px solid black;
+}

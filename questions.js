@@ -5,26 +5,20 @@
 //THEN a timer starts and I am presented with a question
 
 
-var questions = [
-    {
-        "title" : "Did this work?",
-        "answerArr" : ["yes","no","maybe"],
-        "correct" : "yes"
-    }
-
-]
 
 //These variables for timer
 var timeStart = document.getElementById("timer");
 var timeLeft = document.querySelector(".time-left");
 var clearMain = document.querySelector(".clear");
+var showQuestions= document.querySelector(".question-container");
 var countdown = 75;
 
 //Timer of 75 seconds 
-//TODO make click on timer pull up first question
+
 function quizBegin(){ 
     timeStart.addEventListener("click", function(){
         clearMain.style.display = "none"; //clears the start screen
+    
         console.log("click"); //this works now add timer start
         var timerCountdown = setInterval(function(){
             countdown--;
@@ -36,12 +30,34 @@ function quizBegin(){
 
         
       })
+
+      startQuestions();
+
           
  }
 
-quizBegin();
 
-//TODO need to get a question to pop up or anything lol
+
+quizBegin()
+
+
+var set1 = {question: "what is my name?", answer: ["joey","joseph","joe"]}
+
+
+function startQuestions(){
+    showQuestions.style.display = 
+    "block";
+    //fill in div with list items
+    var list = document.createElement('ul');
+    var pull = set1.question;
+
+    var item = document.createElement('li');
+    item.appendChild.pull;
+
+    
+}
+
+//TODO question pops up need to fill the list items from array.
 
 
 
