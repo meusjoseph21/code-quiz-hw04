@@ -16,17 +16,17 @@ var choices= document.getElementById("choices");
 var title= document.getElementById("question-title");
 var countdown = 75;
 var indexQuestion = 0;
+var message = document.querySelector(".message")
 
 var questions = [
-    {title: "what is up?", choices: ['one','two','three','four'], answer: 'one'},
-    {title: "what is down?", choices: ['one','two','three','four'], answer: 'two'},
-    {title: "what is left", choices: ['one','two','three','four'], answer: 'three'},
-    {title: "what is right?", choices: ['one','two','three','four'], answer: 'four'},
+    {title: "question one", choices: ['one','two','three','four'], answer: 'one'},
+    {title: "question two", choices: ['one','two','three','four'], answer: 'two'},
+    {title: "question three", choices: ['one','two','three','four'], answer: 'three'},
+    {title: "question four", choices: ['one','two','three','four'], answer: 'four'},
 
 ]
 
 
-//todo add event listener to listen to all four questions us
 
 function showCurrentQuestion(){
     var currentQuestion = questions[indexQuestion];
@@ -49,7 +49,7 @@ function startQuiz(e){
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         var button = document.createElement("button")
-        button.setAttribute("value","answers")
+        button.setAttribute("data-answer",currentQuestion.choices[i])
         button.textContent = currentQuestion.choices[i]
         choices.appendChild(button) 
      }
@@ -60,19 +60,26 @@ function startQuiz(e){
 
     
   }
-  // I need to figure out how when the user clicks an answer its either correct or incorrect. How do I do that?
+
+
 
   function questionAnswered(e){
     var correctAnswer = questions[indexQuestion].answer
     console.log(correctAnswer)
-    var userAnswr = e.target.value
+    var userAnswr = e.target.getAttribute("data-answer")
     console.log(userAnswr)
     
 
-    if (userAnswr === "answers"){
+    if (userAnswr){
         
         indexQuestion++
         showCurrentQuestion();
+
+        if (userAnswr === correctAnswer){
+            message.textContent = "correct!"
+        } else {
+            message.textContent = "incorrect!"
+        }
     }    
 
   }
