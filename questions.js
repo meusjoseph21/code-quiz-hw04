@@ -34,7 +34,7 @@ function showCurrentQuestion(){
       
 }
 
-function startQuiz(){
+function startQuiz(e){
     var currentQuestion = questions[indexQuestion]
     clearMain.style.display = "none"; //clears the start screen
 
@@ -49,21 +49,40 @@ function startQuiz(){
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         var button = document.createElement("button")
-        button.setAttribute("class","answers")
+        button.setAttribute("value","answers")
         button.textContent = currentQuestion.choices[i]
         choices.appendChild(button) 
      }
+
+
+     
     showCurrentQuestion();
 
     
   }
+  // I need to figure out how when the user clicks an answer its either correct or incorrect. How do I do that?
 
   function questionAnswered(e){
-      if (e.target.matches(".answers")){
-          indexQuestion++
-          showCurrentQuestion();
-      }
+    var correctAnswer = questions[indexQuestion].answer
+    console.log(correctAnswer)
+    var userAnswr = e.target.value
+    console.log(userAnswr)
+    
 
+    if (userAnswr === "answers"){
+        
+        indexQuestion++
+        showCurrentQuestion();
+    }    
+
+  }
+
+  function endQuiz(){
+      if (showCurrentQuestion() === 3){
+          clearInterval(timerCountdown)
+          
+
+      }
   }
 
 
