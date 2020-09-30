@@ -6,17 +6,24 @@
 
 
 
-//These variables for timer
+//all variables
 var timeStart = document.getElementById("timer");
 var timeLeft = document.querySelector(".time-left");
 var clearMain = document.querySelector(".clear");
 
-var showQuestions= document.querySelector(".question-container");
+var showQuestions= document.querySelector("#question-container");
 var choices= document.getElementById("choices");
 var title= document.getElementById("question-title");
 var countdown = 75;
 var indexQuestion = 0;
 var message = document.querySelector(".message")
+var endQuiz = document.getElementById("end")
+var timerCountdown
+var enterName = document.getElementById("name")
+var finalScore = document.getElementById("score")
+
+var dummyData = [{score: 0, initials: "jm"},{},{}] //leave empty get text content from input box score is countdown initials .value of input box create one more container that will take dummyData information 
+localStorage.setItem("highscore", JSON.stringify(dummyData))
 
 var questions = [
     {title: "question one", choices: ['one','two','three','four'], answer: 'one'},
@@ -34,18 +41,25 @@ function showCurrentQuestion(){
       
 }
 
-function startQuiz(e){
-    var currentQuestion = questions[indexQuestion]
-    clearMain.style.display = "none"; //clears the start screen
-
-    console.log("click"); //this works now add timer start
-    var timerCountdown = setInterval(function(){
+function timer(){
+     timerCountdown = setInterval(function(){
         countdown--;
         timeLeft.textContent =  countdown + " seconds left";
         if (countdown === 0){
             clearInterval(timerCountdown);
         }
     }, 1000)
+}
+
+function startQuiz(e){
+    var currentQuestion = questions[indexQuestion]
+
+    clearMain.style.display = "none"; //clears the start screen
+
+
+    console.log("click"); //this works now add timer start
+    
+    timer()
 
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         var button = document.createElement("button")
@@ -62,7 +76,7 @@ function startQuiz(e){
   }
 
 
-
+  //this function shuffles through questions and returns correct or incorrect
   function questionAnswered(e){
     var correctAnswer = questions[indexQuestion].answer
     console.log(correctAnswer)
@@ -79,10 +93,39 @@ function startQuiz(e){
             message.textContent = "correct!"
         } else {
             message.textContent = "incorrect!"
+            countdown-= 15
+            
         }
-    }    
+    }  
+    if (indexQuestion === 3){
+        
+        endOfQuiz()
+
+    }  
 
   }
+
+  function endOfQuiz(){
+
+    clearInterval(timerCountdown)
+
+    endQuiz.style.display = "block"
+
+    timeLeft.style.display = "none"
+
+    showQuestions.style.display = "none"
+
+    finalScore.textContent = countdown
+
+    var storage =  JSON.parse(localStorage.getItem("highscore")
+    )
+    console.log(storage)
+
+
+ 
+  }
+
+
 
    
 
