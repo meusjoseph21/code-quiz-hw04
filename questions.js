@@ -77,14 +77,7 @@ function startQuiz(e){
 
   }
 
-  function endQuiz(){
-      if (showCurrentQuestion() === 3){
-          clearInterval(timerCountdown)
-          
-
-      }
-  }
-
+   
 
 //Event listener
 timeStart.addEventListener("click", startQuiz);
