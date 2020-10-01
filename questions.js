@@ -21,26 +21,29 @@ var endQuiz = document.getElementById("end")
 var timerCountdown
 var enterName = document.getElementById("name")
 var finalScore = document.getElementById("score")
+var nameStorage = document.getElementById("namestorage")
+var submitClick = document.querySelector("#listenclick")
+var highscore = document.getElementById("highscore")
 
-var dummyData = [{score: 0, initials: "jm"},{},{}] //leave empty get text content from input box score is countdown initials .value of input box create one more container that will take dummyData information 
-localStorage.setItem("highscore", JSON.stringify(dummyData))
 
+// questions array 
 var questions = [
-    {title: "question one", choices: ['one','two','three','four'], answer: 'one'},
-    {title: "question two", choices: ['one','two','three','four'], answer: 'two'},
-    {title: "question three", choices: ['one','two','three','four'], answer: 'three'},
-    {title: "question four", choices: ['one','two','three','four'], answer: 'four'},
+    {title: "The condition in an if / else statement is enclosed within square brackets.", choices: ['true', 'false'], answer: 'false'},
+    {title: "console logging a variable makes it show up in the terminal", choices: ['true', 'false'], answer: 'false'},
+    {title: "the # symbol means that the selector is an ID", choices: ['true','false'], answer: 'true'},
+    {title: "the best way to save your work when done is on github", choices: ['true','false'], answer: 'true'},
+    {}
 
 ]
 
-
-
+//shuffles through questions
 function showCurrentQuestion(){
     var currentQuestion = questions[indexQuestion];
     title.textContent = currentQuestion.title;
       
 }
 
+//starts timer
 function timer(){
      timerCountdown = setInterval(function(){
         countdown--;
@@ -51,7 +54,8 @@ function timer(){
     }, 1000)
 }
 
-function startQuiz(e){
+//clears the main screen on clicking start and brings up questions 
+function startQuiz(){
     var currentQuestion = questions[indexQuestion]
 
     clearMain.style.display = "none"; //clears the start screen
@@ -64,7 +68,7 @@ function startQuiz(e){
     for (let i = 0; i < currentQuestion.choices.length; i++) {
         var button = document.createElement("button")
         button.setAttribute("data-answer",currentQuestion.choices[i])
-        button.textContent = currentQuestion.choices[i]
+        button.textContent = currentQuestion.choices[i];
         choices.appendChild(button) 
      }
 
@@ -76,7 +80,7 @@ function startQuiz(e){
   }
 
 
-  //this function shuffles through questions and returns correct or incorrect
+  //correct or incorrect and also takes points off for incorrect
   function questionAnswered(e){
     var correctAnswer = questions[indexQuestion].answer
     console.log(correctAnswer)
@@ -97,15 +101,20 @@ function startQuiz(e){
             
         }
     }  
-    if (indexQuestion === 3){
+    if (indexQuestion === 4) {
         
+
+        console.log("end")
         endOfQuiz()
 
     }  
 
   }
 
+  //ends the quiz, clears questions, brings up scores area
+
   function endOfQuiz(){
+      
 
     clearInterval(timerCountdown)
 
@@ -117,12 +126,53 @@ function startQuiz(e){
 
     finalScore.textContent = countdown
 
-    var storage =  JSON.parse(localStorage.getItem("highscore")
-    )
-    console.log(storage)
+    highscoreRecorder();
+  }
+
+  function highscoreRecorder(){
+
+    submitClick.addEventListener("click",function(e){
+        e.preventDefault()
+        var score = countdown
+        var initials = nameStorage.value
+        var highscoreData = [{
+            score: score,
+            initials: initials
+        },]
+        
+
+        //localStorage.setItem("highscore", JSON.stringify(highscoreData))
+
+        var storage = localStorage.getItem("highscore")
+        if (storage === null){
+            storage = []
+        } else {
+            storage = JSON.parse(storage)
+        }
+        storage.push(highscoreData)
+        var newScore = JSON.stringify(storage)
+         localStorage.setItem("highscore", newScore)
+        
+
+        if (storage !== null){
+
+        for (var i = 0; i < storage.length; i++){
+            var createLi = document.createElement("li")
+            createLi.textContent = highscoreData[i].score + " " + highscoreData[i].initials
+            highscore.appendChild(createLi)
+            
+
+        }
+        
+    }
+        
 
 
- 
+         
+    })
+
+
+
   }
 
 
@@ -134,27 +184,4 @@ timeStart.addEventListener("click", startQuiz);
 
 choices.addEventListener("click", questionAnswered);
 
-//Entry Point
 
-
-
-// WHEN I answer a question correctly 
-//search question is an object
-// THEN I am presented with another question
-
-
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-
-
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-
-
-// WHEN the game is over
-// THEN I can save my initials and score
-// ```
-
-//TODO there will be an array with objects, the objects are the questions with the answers
-
-//TODO use data attributes to indicate whether or not its the correct answer 

@@ -1,3 +1,10 @@
+body {
+    background: url(https://images.unsplash.com/flagged/photo-1593005510329-8a4035a7238f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80) no-repeat center center fixed;
+    background-size: cover;
+
+}
+ 
+
 .begin {
 
     text-align: center;
@@ -20,6 +27,4 @@
     display: none;
 }
 
-div {
-    outline: 1px solid black;
-}
+

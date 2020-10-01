@@ -3,33 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel = "stylesheet" href = "style.css">
-    <title>Document</title>
+    <title>The TRUE test of your Javascript knowledge</title>
 </head>
-<body>
-    <div class= "begin">
+<body class = "container-fluid">
+    <div class= "begin mx-auto">
     
-        <div class ="clear">
+        <div class ="clear col-xs-12 col-md-10 jumbotron mx-auto bg-dark text-warning">
             <h1>Code Quiz CHALLENGE</h1>
-        <p>This is a quiz about the basics of JavaScript, if you get the question right you will go forward, if you choose the wrong answer two seconds will be taken off the clock.</p>
-        <button id ="timer">Start The Quiz</button>
+            <p>This is a quiz about the basics of JavaScript, if you get the question right you will go forward, if you choose the wrong answer fifteen seconds will be taken off the clock.</p>
+             <button id ="timer">Start The Quiz</button>
 
         </div>
         
-        <div id = "question-container">
-            <h3 id ="question-title"></h3>
-            <div id ="choices"></div>
-            <p class="message"></p>
+        <div id = "question-container" class = "col-xs-12 cold-md-10">
+            <div class ="jumbotron bg-dark text-warning">
+                <h3 id ="question-title"></h3>
+                <div id ="choices"></div>
+                <p class="message"></p>
+            </div>
+        
         </div>
 
-        <div id = "end" style = "display: none;">
+        <div class= "col-xs-12 cold-md-10" id = "end" style = "display: none;">
             
             <h1>High Scores!</h1>
             <form id ="name">
-                <input type="text">
-                <button type="submit">submit</button>
+                <input type="text" id ="namestorage">
+                <button type="submit" id="listenclick" >submit</button>
             </form>
             <p>Quiz score: <span id = "score"></span></p>
+            <div id = "highscore"></div>
         </div>
       
  
