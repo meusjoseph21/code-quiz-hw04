@@ -1,11 +1,6 @@
 
 //GIVEN I am taking a code quiz
 
-//WHEN I click the start button
-//THEN a timer starts and I am presented with a question
-
-
-
 //all variables
 var timeStart = document.getElementById("timer");
 var timeLeft = document.querySelector(".time-left");
@@ -165,13 +160,8 @@ function startQuiz(){
         }
         
     }
-        
-
-
          
     })
-
-
 
   }
 
