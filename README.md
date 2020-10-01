@@ -13,4 +13,4 @@ Live page: https://meusjoseph21.github.io/code-quiz-hw04/
 
 github repo: https://github.com/meusjoseph21/code-quiz-hw04
 
-<img src = "./images/screenshot.jpg>
+<img src = "./images/screenshot.jpg">
